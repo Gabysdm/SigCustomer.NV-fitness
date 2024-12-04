@@ -3,4 +3,4 @@
   - Joany Sara
   - Lindalva Gabrielly
   - Maria Geovana
-  - Alessandro Matheus
+  - Alessandro Matheu
