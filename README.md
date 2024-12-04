@@ -1,5 +1,5 @@
 # NV-fitness
-###  Grupo 3
+###  Grupo 3 - INFO2M
   - Joany Sara
   - Lindalva Gabrielly
   - Maria Geovana
