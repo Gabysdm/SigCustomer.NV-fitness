@@ -25,7 +25,7 @@ public class Cliente extends Usuario{
     }
 
     void consultarpacote() {
-        System.out.println("consultando pacote: " + pacoteSelecionado);
+        System.out.println("Consultando pacote: " + pacoteSelecionado);
     }
     
 }
