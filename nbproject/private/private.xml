@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/abc.java</file>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/DescontoFuncionario.java</file>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/Cliente.java</file>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/Usuario.java</file>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/Funcionario.java</file>
-            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SugCustomer/src/TestarClasses.java</file>
+            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SigCustomer/src/Gravador.java</file>
+            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SigCustomer/src/Cliente.java</file>
+            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SigCustomer/src/TelaCadastro.java</file>
+            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SigCustomer/src/Listagem.java</file>
+            <file>file:/C:/Users/aggr5/Documents/NetBeansProjects/SigCustomer/src/Login.java</file>
         </group>
     </open-files>
 </project-private>
