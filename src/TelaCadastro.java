@@ -15,12 +15,23 @@ import javax.swing.JOptionPane;
  * @author aggr5
  */
 public class TelaCadastro extends javax.swing.JFrame {
+    
+    public int id = 0;
+    public boolean alterar = false;
     // Estrutura de dados/ Lista de usuários
     ArrayList<Cliente> clientes = new ArrayList<>();
     /**
      * Creates new form TelaCadastro
      */
-    public TelaCadastro() {
+    
+    public TelaCadastro(){
+        try {
+            clientes = (ArrayList<Cliente>)Gravador.ler("clientes.data");
+        } catch (IOException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -288,6 +299,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                   
             Cliente user = new Cliente (tfNome.getText(), tfCelular.getText(), tfCpf.getText(), tfEmail.getText(), pfSenha.getText());
             clientes.add(user);// Adciona na ArrayList
+                  try {
+                      Gravador.gravar("clientes.data", clientes);
+                  } catch (IOException ex) {
+                      Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                  }
             limparTela();
             
             JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado");
@@ -308,7 +324,24 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_miSairActionPerformed
-    
+    public void mostrarDados() {
+        if(id >= 0){
+            String nome = clientes.get(id).getNome(); //Pega o nome do usuario
+            String telefone = clientes.get(id).getCelular();
+            String email = clientes.get(id).getEmail();
+            String senha = clientes.get(id).getSenha();
+            
+            //preenche os dados no formulario
+            tfNome.setText(nome);
+            tfCelular.setText(telefone);
+            tfEmail.setText(email);
+            pfSenha.setText(senha);
+            pfCSenha.setText(senha);
+            
+            btCadastrar.setName("Alterar");
+        }
+          
+    }
     /**
      * @param args the command line arguments
      */

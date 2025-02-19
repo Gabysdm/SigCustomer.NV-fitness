@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -18,7 +20,20 @@ public class Listagem extends javax.swing.JFrame {
      * Creates new form Listagem
      */
     public Listagem() {
+        try {
+            clientes = (ArrayList<Cliente>)Gravador.ler("clientes.data");
+        } catch (IOException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         initComponents();
+        try {
+            atualizarTabela();
+        } catch (IOException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -33,7 +48,7 @@ public class Listagem extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbControl = new javax.swing.JTable();
         btAlterar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
@@ -47,7 +62,7 @@ public class Listagem extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbControl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -58,11 +73,11 @@ public class Listagem extends javax.swing.JFrame {
                 "Nome", "Email", "Telefone", "CPF", "Plano", "Matrícula", "Atividade"
             }
         ));
-        jTable1.setSelectionBackground(new java.awt.Color(204, 153, 255));
-        jTable1.setShowGrid(false);
-        jTable1.setShowVerticalLines(true);
-        jTable1.setSurrendersFocusOnKeystroke(true);
-        jScrollPane1.setViewportView(jTable1);
+        tbControl.setSelectionBackground(new java.awt.Color(204, 153, 255));
+        tbControl.setShowGrid(false);
+        tbControl.setShowVerticalLines(true);
+        tbControl.setSurrendersFocusOnKeystroke(true);
+        jScrollPane1.setViewportView(tbControl);
 
         btAlterar.setText("Alterar");
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +87,11 @@ public class Listagem extends javax.swing.JFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         btVoltar.setText("Voltar");
 
@@ -132,7 +152,16 @@ public class Listagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        // TODO add your handling code here:
+        
+        int linhaSelecionada = tbControl.getSelectedRow();
+        if(linhaSelecionada >= 0){
+            TelaCadastro TelaCadastro = new TelaCadastro();
+            TelaCadastro.setVisible(true);
+            TelaCadastro.id = linhaSelecionada;
+            TelaCadastro.alterar = true;
+            TelaCadastro.mostrarDados();
+            dispose();
+        }
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void miCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastrarActionPerformed
@@ -147,27 +176,39 @@ public class Listagem extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_miSairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    private void formWindowOpened(java.awt.event.WindowEvent evt){
-        try {
-            //identifica quando a tela for aberta
-            clientes = (ArrayList<Cliente>)Gravador.ler("usuarios.data");
-        } catch (IOException ex) {
-            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        int linhaSelecionada = tbControl.getSelectedRow();
+        
+        if(linhaSelecionada >= 0){
+            clientes.remove(linhaSelecionada);//remove da lista
+            try {
+                atualizarTabela();//atualiza a tabela de acordo com a lista
+            } catch (IOException ex) {
+                Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            JOptionPane.showMessageDialog(rootPane, "Usuário foi excluído");
+            
+            btAlterar.setEnabled(false);
+            btExcluir.setEnabled(false);
         }
-        try {
-            atualizarTabela();
-        } catch (IOException ex) {
-            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+// TODO add your handling code here:
+    }//GEN-LAST:event_btExcluirActionPerformed
+
     
     public void atualizarTabela() throws IOException{
+        //salva o arrayList de usuarios no arquivo
+        Gravador.gravar("clientes.data", clientes);
+        DefaultTableModel modelo = (DefaultTableModel) tbControl.getModel();
+        modelo.setNumRows(0);// deixa a tabela sem conteúdo
+        Object linha[] = new Object[3];// cria um modelo de linha da tabela com 3 linhas
         
+        for(int i = 0; i < clientes.size(); i++){ //Percorre a lista de usuarios
+            linha[0] = clientes.get(i).getNome();//Pega o nome do usuario da lista
+            linha[1] = clientes.get(i).getEmail();
+            linha[2] = clientes.get(i).getCelular();
+            modelo.addRow(linha);//Adciona a linha na tabela
+        }
     }
     
     public static void main(String args[]) {
@@ -209,10 +250,10 @@ public class Listagem extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenu mControle;
     private javax.swing.JMenu mSair;
     private javax.swing.JMenuItem miCadastrar;
     private javax.swing.JMenuItem miSair;
+    private javax.swing.JTable tbControl;
     // End of variables declaration//GEN-END:variables
 }
