@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,6 +19,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     
     public int id = 0;
     public boolean alterar = false;
+    private boolean mensal = false;
+    private boolean semestral = false;
+    private boolean anual = false;
     // Estrutura de dados/ Lista de usuários
     ArrayList<Cliente> clientes = new ArrayList<>();
     /**
@@ -60,15 +64,18 @@ public class TelaCadastro extends javax.swing.JFrame {
         pfSenha = new javax.swing.JPasswordField();
         pfCSenha = new javax.swing.JPasswordField();
         btCadastrar = new javax.swing.JButton();
+        rbMensal = new javax.swing.JRadioButton();
+        rbSemestral = new javax.swing.JRadioButton();
+        rbAnual = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        miListar = new javax.swing.JMenuItem();
+        miLogin = new javax.swing.JMenuItem();
         mSair = new javax.swing.JMenu();
         miSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -96,24 +103,30 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("CPF");
 
+        tfNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeActionPerformed(evt);
             }
         });
 
+        tfEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        tfCelular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCelularActionPerformed(evt);
             }
         });
 
+        tfCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCpfActionPerformed(evt);
             }
         });
 
+        pfSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pfSenha.setPreferredSize(new java.awt.Dimension(73, 22));
         pfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +134,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        pfCSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pfCSenha.setPreferredSize(new java.awt.Dimension(73, 22));
         pfCSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +142,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        btCadastrar.setBackground(new java.awt.Color(204, 0, 255));
+        btCadastrar.setBackground(new java.awt.Color(153, 0, 255));
         btCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btCadastrar.setText("CONFIRMAR CADASTRO");
@@ -138,48 +152,83 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        rbMensal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbMensal.setForeground(new java.awt.Color(153, 0, 255));
+        rbMensal.setText("Mensal: R$75,00");
+        rbMensal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMensalActionPerformed(evt);
+            }
+        });
+
+        rbSemestral.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbSemestral.setForeground(new java.awt.Color(153, 0, 255));
+        rbSemestral.setText("Semestral: 1x de R$420,00 ou 6x de R$70,00");
+        rbSemestral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSemestralActionPerformed(evt);
+            }
+        });
+
+        rbAnual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbAnual.setForeground(new java.awt.Color(153, 0, 255));
+        rbAnual.setText("Anual: 1x de R$780,00 ou 12x de R$65,00");
+        rbAnual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAnualActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(97, 97, 97)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(31, 31, 31))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(97, 97, 97))
-                            .addComponent(tfCelular))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(110, 110, 110))
-                            .addComponent(tfCpf)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(35, 35, 35))
-                            .addComponent(pfCSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(tfNome)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(203, 203, 203))
-                    .addComponent(tfEmail)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                        .addGap(31, 31, 31))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(97, 97, 97))
+                                    .addComponent(tfCelular))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(110, 110, 110))
+                                    .addComponent(tfCpf)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                        .addGap(35, 35, 35))
+                                    .addComponent(pfCSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(tfNome)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(203, 203, 203))
+                            .addComponent(tfEmail)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(96, 96, 96))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(45, 45, 45))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbSemestral)
+                            .addComponent(rbAnual))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +252,13 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pfCSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
+                .addComponent(rbMensal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbSemestral)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbAnual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -213,9 +268,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,13 +279,13 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jMenu1.setText("Controle");
 
-        miListar.setText("Listagem");
-        miListar.addActionListener(new java.awt.event.ActionListener() {
+        miLogin.setText("Login");
+        miLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miListarActionPerformed(evt);
+                miLoginActionPerformed(evt);
             }
         });
-        jMenu1.add(miListar);
+        jMenu1.add(miLogin);
 
         jMenuBar1.add(jMenu1);
 
@@ -292,21 +347,37 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
     
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        if(tfNome.getText().equals("")||tfCelular.getText().equals("")||tfEmail.getText().equals("")||pfSenha.getText().equals("")||pfCSenha.getText().equals("")){
+        if(tfNome.getText().equals("")||tfCelular.getText().equals("")||tfCpf.getText().equals("")||tfEmail.getText().equals("")||pfSenha.getText().equals("")||pfCSenha.getText().equals("")||!(mensal||semestral||anual)){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
             }else{ 
               if(pfSenha.getText().equals(pfCSenha.getText())){
-                  
-            Cliente user = new Cliente (tfNome.getText(), tfCelular.getText(), tfCpf.getText(), tfEmail.getText(), pfSenha.getText());
-            clientes.add(user);// Adciona na ArrayList
+              if(!alterar){
+              Cliente user = new Cliente (tfNome.getText(), tfCelular.getText(), tfCpf.getText(), tfEmail.getText(), pfSenha.getText(),PegarPlano(),Calendar.getInstance());
+              clientes.add(user);// Adciona na ArrayList
                   try {
                       Gravador.gravar("clientes.data", clientes);
                   } catch (IOException ex) {
                       Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
                   }
-            limparTela();
-            
-            JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado");
+                  JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado");
+                  dispose();
+                  Login login = new Login();
+                  login.setVisible(true);
+                  limparTela();
+           }else{
+               Cliente user = new Cliente(tfNome.getText(), tfCelular.getText(), tfCpf.getText(), tfEmail.getText(), pfSenha.getText(),PegarPlano(),clientes.get(id).getDataInscricao());
+               clientes.set(id, user);// Altera no ArrayList
+               
+                  try {
+                      Gravador.gravar("clientes.data", clientes);
+                  } catch (IOException ex) {
+                      Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                  Listagem Listagem = new Listagem();
+                  Listagem.setVisible(true);
+                  dispose();
+                  JOptionPane.showMessageDialog(rootPane, "Usuário alterado");
+           }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Senhas não são iguais.");
               }
@@ -314,31 +385,68 @@ public class TelaCadastro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btCadastrarActionPerformed
 
-    private void miListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarActionPerformed
-        this.dispose();
-        Listagem Listagem = new Listagem();
-        Listagem.setVisible(true);
+    private void miLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoginActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        dispose();
         
-    }//GEN-LAST:event_miListarActionPerformed
+    }//GEN-LAST:event_miLoginActionPerformed
 
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_miSairActionPerformed
+
+    private void rbMensalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMensalActionPerformed
+        rbSemestral.setEnabled(!rbSemestral.isEnabled());
+        rbAnual.setEnabled(!rbAnual.isEnabled());
+        mensal = true;
+        semestral = false;
+        anual = false;
+    }//GEN-LAST:event_rbMensalActionPerformed
+
+    private void rbSemestralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSemestralActionPerformed
+        rbMensal.setEnabled(!rbMensal.isEnabled());
+        rbAnual.setEnabled(!rbAnual.isEnabled());
+        mensal = false;
+        semestral = true;
+        anual = false;
+    }//GEN-LAST:event_rbSemestralActionPerformed
+
+    private void rbAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnualActionPerformed
+        rbMensal.setEnabled(!rbMensal.isEnabled());
+        rbSemestral.setEnabled(!rbSemestral.isEnabled());
+        mensal = false;
+        semestral = false;
+        anual = true;
+    }//GEN-LAST:event_rbAnualActionPerformed
+    
+    private Plano PegarPlano(){
+        if(mensal){
+           return Plano.MENSAL; 
+        }else if(semestral){
+            return Plano.SEMESTRAL; 
+        }else{
+            return Plano.ANUAL;
+        }
+    }
+    
     public void mostrarDados() {
         if(id >= 0){
             String nome = clientes.get(id).getNome(); //Pega o nome do usuario
             String telefone = clientes.get(id).getCelular();
             String email = clientes.get(id).getEmail();
+            String cpf = clientes.get(id).getCpf();
             String senha = clientes.get(id).getSenha();
             
             //preenche os dados no formulario
             tfNome.setText(nome);
             tfCelular.setText(telefone);
             tfEmail.setText(email);
+            tfCpf.setText(cpf);
             pfSenha.setText(senha);
             pfCSenha.setText(senha);
             
-            btCadastrar.setName("Alterar");
+            btCadastrar.setText("Alterar");
         }
           
     }
@@ -390,10 +498,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mSair;
-    private javax.swing.JMenuItem miListar;
+    private javax.swing.JMenuItem miLogin;
     private javax.swing.JMenuItem miSair;
     private javax.swing.JPasswordField pfCSenha;
     private javax.swing.JPasswordField pfSenha;
+    private javax.swing.JRadioButton rbAnual;
+    private javax.swing.JRadioButton rbMensal;
+    private javax.swing.JRadioButton rbSemestral;
     private javax.swing.JTextField tfCelular;
     private javax.swing.JTextField tfCpf;
     private javax.swing.JTextField tfEmail;

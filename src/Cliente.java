@@ -1,74 +1,46 @@
 
+
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-public class Cliente implements Serializable{
+public class Cliente extends Usuario implements Serializable{
     
-    String nome;
-    String celular;
-    String cpf;
-    String email;
-    String senha;
-    Calendar dataDeInscrição;
-    boolean atividade;
+    private Plano plano;
+    private Calendar dataInscricao; 
 
-    public Cliente(String nome, String celular, String cpf, String email, String senha) {
-        this.nome = nome;
-        this.celular = celular;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
+    public Cliente(String nome, String celular, String cpf, String email, String senha, Plano plano, Calendar dataInscricao){
+        super(nome, celular, cpf, email, senha);
+        this.plano = plano;
+        this.dataInscricao = dataInscricao;
     }
 
-    public String getNome() {
-        return nome;
+    public Plano getPlano() {
+        return plano;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPlano(Plano plano) {
+        this.plano = plano;
     }
 
-    public String getCelular() {
-        return celular;
+    public Calendar getDataInscricao() {
+        return dataInscricao;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setDataInscricao(Calendar dataInscricao) {
+        this.dataInscricao = dataInscricao;
     }
     
-    
-    
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    public void cadastrar(){
+    public String getDataInscricaoString() {
+        DateFormat d = DateFormat.getDateInstance(DateFormat.SHORT);
+        Date data = dataInscricao.getTime();
+        return d.format(data);
         
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "nome=" + nome + ", celular=" + celular + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", dataDeInscri\u00e7\u00e3o=" + dataDeInscrição + ", atividade=" + atividade + '}';
+        return "Cliente{" + "nome=" + nome + ", celular=" + celular + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", plano=" + plano + ", dataInscricao=" + dataInscricao + '}';
     }
-
 }

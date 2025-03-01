@@ -55,22 +55,24 @@ public class Listagem extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mControle = new javax.swing.JMenu();
         miCadastrar = new javax.swing.JMenuItem();
+        miLogin = new javax.swing.JMenuItem();
         mSair = new javax.swing.JMenu();
         miSair = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         tbControl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Email", "Telefone", "CPF", "Plano", "Matrícula", "Atividade"
+                "Nome", "Email", "Telefone", "CPF", "Plano", "Matrícula"
             }
         ));
         tbControl.setSelectionBackground(new java.awt.Color(204, 153, 255));
@@ -79,6 +81,9 @@ public class Listagem extends javax.swing.JFrame {
         tbControl.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(tbControl);
 
+        btAlterar.setBackground(new java.awt.Color(153, 0, 255));
+        btAlterar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btAlterar.setForeground(new java.awt.Color(255, 255, 255));
         btAlterar.setText("Alterar");
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +91,9 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
+        btExcluir.setBackground(new java.awt.Color(153, 0, 255));
+        btExcluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +101,17 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
+        btVoltar.setBackground(new java.awt.Color(153, 0, 255));
+        btVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btVoltar.setForeground(new java.awt.Color(255, 255, 255));
         btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
+        jMenuBar1.setBorder(null);
 
         mControle.setText("Controle");
 
@@ -104,6 +122,14 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
         mControle.add(miCadastrar);
+
+        miLogin.setText("Login");
+        miLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoginActionPerformed(evt);
+            }
+        });
+        mControle.add(miLogin);
 
         jMenuBar1.add(mControle);
 
@@ -125,27 +151,26 @@ public class Listagem extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btExcluir)
-                .addGap(78, 78, 78)
-                .addComponent(btAlterar)
-                .addGap(78, 78, 78)
-                .addComponent(btVoltar)
-                .addGap(25, 25, 25))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btExcluir)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btVoltar)
-                        .addComponent(btAlterar)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,14 +190,14 @@ public class Listagem extends javax.swing.JFrame {
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void miCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastrarActionPerformed
-        this.dispose();
-        TelaCadastro TelaCadastro = new TelaCadastro();
-        TelaCadastro.setVisible(true);
+        dispose();
+        TelaCadastroFuncionario telaCadastroF = new TelaCadastroFuncionario();
+        telaCadastroF.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_miCadastrarActionPerformed
 
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
-        this.dispose();
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_miSairActionPerformed
 
@@ -188,12 +213,21 @@ public class Listagem extends javax.swing.JFrame {
             }
             
             JOptionPane.showMessageDialog(rootPane, "Usuário foi excluído");
-            
-            btAlterar.setEnabled(false);
-            btExcluir.setEnabled(false);
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        dispose();
+        TelaCadastro telacadastro = new TelaCadastro();
+        telacadastro.setVisible(true);
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void miLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoginActionPerformed
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_miLoginActionPerformed
 
     
     public void atualizarTabela() throws IOException{
@@ -201,12 +235,16 @@ public class Listagem extends javax.swing.JFrame {
         Gravador.gravar("clientes.data", clientes);
         DefaultTableModel modelo = (DefaultTableModel) tbControl.getModel();
         modelo.setNumRows(0);// deixa a tabela sem conteúdo
-        Object linha[] = new Object[3];// cria um modelo de linha da tabela com 3 linhas
+        Object linha[] = new Object[6];// cria um modelo de linha da tabela com 3 linhas
         
         for(int i = 0; i < clientes.size(); i++){ //Percorre a lista de usuarios
+            
             linha[0] = clientes.get(i).getNome();//Pega o nome do usuario da lista
             linha[1] = clientes.get(i).getEmail();
             linha[2] = clientes.get(i).getCelular();
+            linha[3] = clientes.get(i).getCpf();
+            linha[4] = clientes.get(i).getPlano();
+            linha[5] = clientes.get(i).getDataInscricaoString();
             modelo.addRow(linha);//Adciona a linha na tabela
         }
     }
@@ -253,6 +291,7 @@ public class Listagem extends javax.swing.JFrame {
     private javax.swing.JMenu mControle;
     private javax.swing.JMenu mSair;
     private javax.swing.JMenuItem miCadastrar;
+    private javax.swing.JMenuItem miLogin;
     private javax.swing.JMenuItem miSair;
     private javax.swing.JTable tbControl;
     // End of variables declaration//GEN-END:variables
