@@ -20,6 +20,8 @@ public class Inicio extends javax.swing.JFrame {
     boolean funcionario = false;
     int idUser = 0;
     ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
+    ArrayList<Cliente> clientes = new ArrayList<>();
+    ArrayList<Funcionario> funcionarios = new ArrayList<>();
     /**
      * Creates new form Incio
      */
@@ -28,10 +30,15 @@ public class Inicio extends javax.swing.JFrame {
         miListagem.setVisible(false);
         miListagemF.setVisible(false);
         btExcluir.setVisible(false);
+        miCadastro.setVisible(false);
+        miCadastrarF.setVisible(false);
         setExtendedState(MAXIMIZED_BOTH);
         
         try {
             avaliacoes = (ArrayList<Avaliacao>)Gravador.ler("avaliacoes.data");
+            clientes = (ArrayList<Cliente>)Gravador.ler("clientes.data");
+            funcionarios = (ArrayList<Funcionario>)Gravador.ler("funcionarios.data");
+            
         } catch (IOException ex) {
             Logger.getLogger(ListagemF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -73,6 +80,7 @@ public class Inicio extends javax.swing.JFrame {
         miListagem = new javax.swing.JMenuItem();
         miListagemF = new javax.swing.JMenuItem();
         miAlterar = new javax.swing.JMenuItem();
+        miCadastrarF = new javax.swing.JMenuItem();
         mbSair = new javax.swing.JMenu();
         miSair = new javax.swing.JMenuItem();
 
@@ -127,11 +135,14 @@ public class Inicio extends javax.swing.JFrame {
 
         tbAval.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Data", "Dia", "Horario"
+                "Data", "Dia", "Horario", "Nome"
             }
         ));
         tbAval.setSelectionBackground(new java.awt.Color(204, 153, 255));
@@ -167,26 +178,24 @@ public class Inicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 173, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6))
+                    .addComponent(btExcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btMarcar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(338, Short.MAX_VALUE)
-                .addComponent(btExcluir)
-                .addContainerGap(334, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +209,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btMarcar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,6 +263,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         mbControl.add(miAlterar);
+
+        miCadastrarF.setText("Cadastrar Funcionário");
+        miCadastrarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadastrarFActionPerformed(evt);
+            }
+        });
+        mbControl.add(miCadastrarF);
 
         jMenuBar1.add(mbControl);
 
@@ -359,12 +376,25 @@ public class Inicio extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void miCadastrarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastrarFActionPerformed
+        dispose();
+        TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
+        telaCadastroFuncionario.setVisible(true);
+    }//GEN-LAST:event_miCadastrarFActionPerformed
     
     
     private Avaliacao pegarAval() {
         int diaSemana = listDia.getSelectedIndex() + 2;
-        int horaI = listDia.getSelectedIndex();
+        int horaI = listHora.getSelectedIndex();
         int horaCerta = 0;
+        String nomeUser;
+        
+        if(funcionario) {
+            nomeUser = funcionarios.get(idUser).getNome();
+        } else {
+            nomeUser = clientes.get(idUser).getNome();
+        }
         
         switch (horaI) {
             case 0:
@@ -388,25 +418,28 @@ public class Inicio extends javax.swing.JFrame {
         
             
         
-        return new Avaliacao(diaSemana, horaCerta, idUser);
+        return new Avaliacao(diaSemana, horaCerta, idUser, nomeUser);
     }
     
     public void acesso(){
         miListagem.setVisible(true);
         miListagemF.setVisible(true);
         btExcluir.setVisible(true);
+        miCadastro.setVisible(true);
+        miCadastrarF.setVisible(true);
     }
     public void atualizarTabela() throws IOException{
         //salva o arrayList de usuarios no arquivo
         Gravador.gravar("avaliacoes.data", avaliacoes);
         DefaultTableModel modelo = (DefaultTableModel) tbAval.getModel();
         modelo.setNumRows(0);// deixa a tabela sem conteúdo
-        Object linha[] = new Object[3];// cria um modelo de linha da tabela com 3 linhas
+        Object linha[] = new Object[4];// cria um modelo de linha da tabela com 3 linhas
         
         for(int i = 0; i < avaliacoes.size(); i++){ //Percorre a lista de usuarios
             linha[0] = avaliacoes.get(i).getDataMarcado();//Pega o nome do usuario da lista
             linha[1] = avaliacoes.get(i).getDiaSemana();
             linha[2] = avaliacoes.get(i).getHora();
+            linha[3] = avaliacoes.get(i).getNomeUser();
             modelo.addRow(linha);//Adciona a linha na tabela
         }
     }
@@ -463,6 +496,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu mbControl;
     private javax.swing.JMenu mbSair;
     private javax.swing.JMenuItem miAlterar;
+    private javax.swing.JMenuItem miCadastrarF;
     private javax.swing.JMenuItem miCadastro;
     private javax.swing.JMenuItem miListagem;
     private javax.swing.JMenuItem miListagemF;

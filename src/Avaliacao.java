@@ -18,6 +18,7 @@ public class Avaliacao implements Serializable {
     String dataMarcado;
     String diaSemana;
     String hora;
+    String nomeUser;
     int idCliente;
 
     public int getIdCliente() {
@@ -28,7 +29,7 @@ public class Avaliacao implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Avaliacao(int diaSemana, int hora, int idCliente) {
+    public Avaliacao(int diaSemana, int hora, int idCliente, String nome) {
         //int diaSemanaCliente = 4; // TODO quarta-feira, por exemplo
 		
 		calendar = Calendar.getInstance();
@@ -53,6 +54,15 @@ public class Avaliacao implements Serializable {
                 this.diaSemana = getDiaSemanaString(diaSemana);
                 this.hora = hora + ":00";
                 this.idCliente = idCliente;
+                nomeUser = nome;
+    }
+
+    public String getNomeUser() {
+        return nomeUser;
+    }
+
+    public void setNomeUser(String nomeUser) {
+        this.nomeUser = nomeUser;
     }
 
     public Calendar getCalendar() {
