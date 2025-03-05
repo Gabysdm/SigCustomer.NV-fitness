@@ -18,7 +18,6 @@ public class Avaliacao implements Serializable {
     String dataMarcado;
     String diaSemana;
     String hora;
-    
     int idCliente;
 
     public int getIdCliente() {

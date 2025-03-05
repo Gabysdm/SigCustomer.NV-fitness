@@ -379,10 +379,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                   } catch (IOException ex) {
                       Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
                   }
-                  Listagem Listagem = new Listagem();
-                  Listagem.setVisible(true);
-                  dispose();
                   JOptionPane.showMessageDialog(rootPane, "Usuário alterado");
+                  dispose();
+                  Login login = new Login();
+                  login.setVisible(true);
            }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Senhas não são iguais.");

@@ -215,6 +215,7 @@ public class Login extends javax.swing.JFrame {
             for(int i = 0; i<clientes.size(); i++){
                 if(tfCpf.getText().equals(clientes.get(i).getCpf())&&pfSenha.getText().equals(clientes.get(i).getSenha())){
                     Inicio inicio = new Inicio();
+                    inicio.idUser = i;
                     inicio.setVisible(true);
                     dispose();
                     encontrado = true;
@@ -227,6 +228,7 @@ public class Login extends javax.swing.JFrame {
                 if(tfCpf.getText().equals(funcionarios.get(i).getCpf())&&pfSenha.getText().equals(funcionarios.get(i).getSenha())){
                     Inicio inicio = new Inicio();
                     inicio.funcionario = true;
+                    inicio.idUser = i;
                     inicio.acesso();
                     inicio.setVisible(true);
                     dispose();

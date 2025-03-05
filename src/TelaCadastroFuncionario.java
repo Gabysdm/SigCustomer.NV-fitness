@@ -232,7 +232,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addComponent(cbCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -377,8 +377,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(TelaCadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    Listagem Listagem = new Listagem();
-                    Listagem.setVisible(true);
+                    ListagemF listagemF = new ListagemF();
+                    listagemF.setVisible(true);
                     dispose();
                     JOptionPane.showMessageDialog(rootPane, "Usuário alterado");
                 }
