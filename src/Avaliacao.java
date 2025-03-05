@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author aggr5
  */
-public class Avaliacao {
+public class Avaliacao implements Serializable {
     Calendar calendar;
     String dataMarcado;
     String diaSemana;
