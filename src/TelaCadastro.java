@@ -103,6 +103,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("CPF");
 
+        tfNome.setBackground(new java.awt.Color(255, 204, 255));
         tfNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,8 +111,10 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        tfEmail.setBackground(new java.awt.Color(255, 204, 255));
         tfEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        tfCelular.setBackground(new java.awt.Color(255, 204, 255));
         tfCelular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +122,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        tfCpf.setBackground(new java.awt.Color(255, 204, 255));
         tfCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +130,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        pfSenha.setBackground(new java.awt.Color(255, 204, 255));
         pfSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pfSenha.setPreferredSize(new java.awt.Dimension(73, 22));
         pfSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +139,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        pfCSenha.setBackground(new java.awt.Color(255, 204, 255));
         pfCSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pfCSenha.setPreferredSize(new java.awt.Dimension(73, 22));
         pfCSenha.addActionListener(new java.awt.event.ActionListener() {

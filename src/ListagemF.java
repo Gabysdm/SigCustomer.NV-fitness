@@ -204,7 +204,7 @@ public class ListagemF extends javax.swing.JFrame {
             linha[1] = funcionarios.get(i).getEmail();
             linha[2] = funcionarios.get(i).getCelular();
             linha[3] = funcionarios.get(i).getCpf();
-            linha[4] = funcionarios.get(i).getCargo();
+            linha[4] = funcionarios.get(i).getCargo().getCargo();
             modelo.addRow(linha);//Adciona a linha na tabela
         }
     }

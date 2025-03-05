@@ -243,7 +243,7 @@ public class Listagem extends javax.swing.JFrame {
             linha[1] = clientes.get(i).getEmail();
             linha[2] = clientes.get(i).getCelular();
             linha[3] = clientes.get(i).getCpf();
-            linha[4] = clientes.get(i).getPlano();
+            linha[4] = clientes.get(i).getPlano().getPlano();
             linha[5] = clientes.get(i).getDataInscricaoString();
             modelo.addRow(linha);//Adciona a linha na tabela
         }

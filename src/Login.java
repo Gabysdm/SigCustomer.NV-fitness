@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     ArrayList<Cliente> clientes = new ArrayList<>();
+    ArrayList<Funcionario> funcionarios = new ArrayList<>();
     
     /**
      * Creates new form TelaLogin
@@ -24,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         try {
             clientes = (ArrayList<Cliente>)Gravador.ler("clientes.data");
+            funcionarios = (ArrayList<Funcionario>)Gravador.ler("funcionarios.data");
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -213,6 +215,19 @@ public class Login extends javax.swing.JFrame {
             for(int i = 0; i<clientes.size(); i++){
                 if(tfCpf.getText().equals(clientes.get(i).getCpf())&&pfSenha.getText().equals(clientes.get(i).getSenha())){
                     Inicio inicio = new Inicio();
+                    inicio.setVisible(true);
+                    dispose();
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+        if(encontrado == false){
+            for(int i = 0; i<funcionarios.size(); i++){
+                if(tfCpf.getText().equals(funcionarios.get(i).getCpf())&&pfSenha.getText().equals(funcionarios.get(i).getSenha())){
+                    Inicio inicio = new Inicio();
+                    inicio.funcionario = true;
+                    inicio.acesso();
                     inicio.setVisible(true);
                     dispose();
                     encontrado = true;
